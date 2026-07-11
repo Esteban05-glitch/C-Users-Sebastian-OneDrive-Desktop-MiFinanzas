@@ -37,6 +37,7 @@ body {
 }
 
 .install-btn {
+  display: none;
   margin-top: 8px;
 }
 
