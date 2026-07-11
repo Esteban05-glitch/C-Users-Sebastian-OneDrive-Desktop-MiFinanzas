@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2563eb" />
+    <title>Gestor de Finanzas Personales</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="hero">
+        <h1>Gestor de Finanzas Personales</h1>
+        <p>Controla tus gastos diarios y mantén tu presupuesto bajo control.</p>
+        <button id="installBtn" class="secondary install-btn">Instalar app</button>
+      </header>
+
+      <section class="card">
+        <h2>Presupuesto</h2>
+        <div class="input-row">
+          <input id="budgetInput" type="number" min="0" step="0.01" placeholder="Ej: 1000" />
+          <button id="saveBudgetBtn">Guardar presupuesto</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Registrar gasto</h2>
+        <div class="input-grid">
+          <input id="descriptionInput" type="text" placeholder="Descripción" />
+          <select id="categoryInput">
+            <option value="General">General</option>
+            <option value="Comida">Comida</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Entretenimiento">Entretenimiento</option>
+            <option value="Salud">Salud</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input id="amountInput" type="number" min="0" step="0.01" placeholder="Monto" />
+          <button id="addExpenseBtn">Agregar gasto</button>
+        </div>
+      </section>
+
+      <section class="card summary-card">
+        <div class="summary-item">
+          <span>Presupuesto total</span>
+          <strong id="budgetValue">$0.00</strong>
+        </div>
+        <div class="summary-item">
+          <span>Total gastado</span>
+          <strong id="spentValue">$0.00</strong>
+        </div>
+        <div class="summary-item">
+          <span>Restante</span>
+          <strong id="remainingValue">$0.00</strong>
+        </div>
+        <div class="summary-item">
+          <span>Uso</span>
+          <strong id="percentageValue">0%</strong>
+        </div>
+      </section>
+
+      <section class="card alert-card">
+        <h2>Estado</h2>
+        <p id="alertMessage">Agrega un presupuesto para comenzar.</p>
+      </section>
+
+      <section class="card">
+        <h2>Gráfico de gastos</h2>
+        <div class="chart-wrapper">
+          <canvas id="expenseChart" width="280" height="280"></canvas>
+        </div>
+        <div id="chartLegend" class="chart-legend"></div>
+      </section>
+
+      <section class="card">
+        <div class="expense-header">
+          <h2>Gastos registrados</h2>
+          <button id="clearExpensesBtn" class="secondary">Limpiar</button>
+        </div>
+        <ul id="expenseList" class="expense-list"></ul>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

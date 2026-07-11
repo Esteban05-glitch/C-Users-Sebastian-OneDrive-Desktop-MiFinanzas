@@ -1,0 +1,17 @@
+{
+  "name": "Gestor de Finanzas Personales",
+  "short_name": "Finanzas",
+  "description": "Gestiona tu presupuesto y gastos desde una app web instalable.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f6f8ff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
