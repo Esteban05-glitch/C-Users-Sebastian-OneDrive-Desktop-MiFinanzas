@@ -156,6 +156,19 @@ button.secondary {
   border-radius: 50%;
 }
 
+.assistant-grid {
+  align-items: center;
+}
+
+.assistant-response {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #334155;
+  min-height: 48px;
+}
+
 .alert-card {
   border-left: 6px solid #2563eb;
 }

@@ -17,6 +17,9 @@ const expenseList = document.getElementById('expenseList');
 const expenseChart = document.getElementById('expenseChart');
 const chartLegend = document.getElementById('chartLegend');
 const installBtn = document.getElementById('installBtn');
+const assistantInput = document.getElementById('assistantInput');
+const assistantBtn = document.getElementById('assistantBtn');
+const assistantResponse = document.getElementById('assistantResponse');
 
 let budget = 0;
 let expenses = [];
@@ -194,6 +197,44 @@ installBtn.addEventListener('click', async () => {
   }
   deferredPrompt = null;
   installBtn.style.display = 'none';
+});
+
+assistantBtn.addEventListener('click', async () => {
+  const prompt = assistantInput.value.trim();
+  if (!prompt) {
+    assistantResponse.textContent = 'Escribe una pregunta para obtener ayuda.';
+    return;
+  }
+
+  const isLocal = window.location.protocol === 'file:';
+  if (isLocal) {
+    assistantResponse.textContent = 'El asistente IA solo funciona en Vercel. Abre tu app en: https://tu-proyecto.vercel.app';
+    return;
+  }
+
+  assistantResponse.textContent = 'Consultando a la IA...';
+
+  try {
+    const response = await fetch('/api/assistant', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt, expenses, budget })
+    });
+
+    const contentType = response.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      throw new Error('Error del servidor.');
+    }
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.error || 'No se pudo consultar la IA.');
+    }
+
+    assistantResponse.textContent = data.reply;
+  } catch (error) {
+    assistantResponse.textContent = error.message || 'No se pudo completar la solicitud.';
+  }
 });
 
 window.addEventListener('appinstalled', () => {
